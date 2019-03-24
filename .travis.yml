@@ -15,10 +15,14 @@ addons:
 install:
   - echo "Please don't go get"
 
+before_script:
+  - bash contrib/set_travis_experimental_features.sh
+
 script:
   - make test
   - make verify-codegen
   - make build
+  - make ci-certify
 
 after_success:
   - if [ ! -s "$TRAVIS_TAG" ] ; then

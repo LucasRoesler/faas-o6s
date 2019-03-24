@@ -16,6 +16,15 @@ test:
 verify-codegen:
 	./hack/verify-codegen.sh
 
+ci-certify:
+	./contrib/get_kind.sh
+	./contrib/install_kubectl.sh
+	./contrib/create_kind_cluster.sh
+	./contrib/install_helm.sh
+	./contrib/install_tiller.sh
+	./contrib/deploy.sh
+	./contrib/certify.sh
+
 ci-armhf-build:
 	docker build -t openfaas/openfaas-operator:$(TAG)-armhf . -f Dockerfile.armhf
 
